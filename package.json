@@ -1,0 +1,11 @@
+{
+  "name": "cst3144_cw",
+  "version": "1.0.0",
+  "description": "Coursework for the fullstack module, final year mdx mur",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oluwatobiloba Israel Segun-Lean",
+  "license": "ISC"
+}
