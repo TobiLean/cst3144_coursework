@@ -1,47 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <Script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></Script>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/2d6490a2b6.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="lessons.js"></script>
+    <script src="scroll.js"></script>
     <title>After School Lessons</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="app">
-        <div id="navbar">
-            <h2>After School Lessons</h2>
-            <button class="checkoutBtn" v-on:click="checkout">{{count}} Checkout</button>
-        </div>
-        <div class="content" v-for>
-            <img class="product-img" src="assets/pngwing.com(2).png" alt="Cat image">
-            <div class="details">
-                <h1 class="title">Cat food 25Ib bag</h1>
-                <p>Irresistible organic goodness</p>
-                <p>Price: {{price}}</p>
-                <button class="addBtn" v-on:click="update">add to cart</button>
+      <div id="navbar">
+        <h2>After School Lessons</h2>
+      </div>
+      <div class="main">
+        <div class="sidebar"></div>
+        <div class="content">
+          <div class="lesson_card" v-for="lesson in lessons" :key="lesson.id">
+            <div class="lesson_card_head">
+              <div class="lesson_img">
+                <p class="space_string">{{lesson.spaces}} spaces left</p>
+                <img :src="lesson.image" :alt="lesson.subject" srcset="" />
+              </div>
+              <div class="lesson_card_main">
+                <p class="location_string">
+                  <i class="fa-solid fa-location-dot"></i> {{lesson.location}}
+                </p>
+                <p class="subject_string">
+                  <i class="fa-solid fa-book"></i> {{lesson.subject}}
+                </p>
+              </div>
             </div>
+            <div class="lesson_card_bait">
+              <div class="bait_left">
+                <span
+                  class="rating_string"
+                  v-for="star in 5"
+                  :key="star"
+                  class="star"
+                  style="color: gold;"
+                >
+                  <i class="fa-bounce" :class="star <= lesson.rating ? 'fas fa-star' : 'far fa-star' " style="--fa-bounce-rebound: 3px; --fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1"></i>
+                </span>
+                <p class="price_string"><span>USD</span> {{lesson.price}}</p>
+              </div>
+              <div class="bait_right">
+                <button class="add_to_cart_btn">Add to Cart</button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
-<script src="lessons.js"></script>
-<script>
-
+  </body>
+  <script>
     var app = new Vue({
-        el: '#app',
-        data:{
-            price: 300,
-            count: 0,
-            ID: 123456,
-        },
-        methods: {
-            update: function(){
-                this.count++
-            },
-            checkout: function(){
-                window.location.href = "http://127.0.0.1:5500/goodbye.html"
-            }
-        }
+      el: "#app",
+      data: {
+        lessons: lessonArray,
+      },
+      methods: {},
     });
-</script>
+  </script>
 </html>
