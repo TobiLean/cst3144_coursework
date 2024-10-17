@@ -7,5 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Oluwatobiloba Israel Segun-Lean",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "mongoclient": "^1.0.3",
+    "mongodb": "^6.9.0",
+    "path": "^0.12.7"
+  }
 }
