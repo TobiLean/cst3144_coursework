@@ -11,17 +11,20 @@ app.use(bodyParser.json());
 
 app.use('/cw', express.static(path.join(__dirname, 'public')));
 
-const main = async () => {
+const getAllLessonsJson = async () => {
   try {
-    const _lessons = await getLessonsConnection();
+    let _lessons = await getLessonsConnection();
     const allLessons = await _lessons.find().toArray();
-    console.log(allLessons)
+    return allLessons;
   } catch (err) {
     console.error("Error occured while trying to get lessons .", err);
   }
 }
 
-main();
+app.get("/cw/lessons", async (req, res) => {
+  let _lessonsArr = await getAllLessonsJson();
+  return res.status(200).json(_lessonsArr);
+})
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
