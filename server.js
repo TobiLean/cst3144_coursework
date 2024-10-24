@@ -9,7 +9,7 @@ const PORT= 8090;
 
 app.use(bodyParser.json());
 
-app.use('/cw', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 const getAllLessonsJson = async () => {
   try {
@@ -21,7 +21,7 @@ const getAllLessonsJson = async () => {
   }
 }
 
-app.get("/cw/lessons", async (req, res) => {
+app.get("/lessons", async (req, res) => {
   let _lessonsArr = await getAllLessonsJson();
   return res.status(200).json(_lessonsArr);
 })
