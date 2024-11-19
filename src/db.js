@@ -14,7 +14,6 @@ const connectToMongo = async () => {
   } catch (err) {
     console.error(err);
   }
-
 }
 
 const getLessonsConnection = async () => {
@@ -22,4 +21,4 @@ const getLessonsConnection = async () => {
   return db.collection('lessons');
 }
 
-module.exports = {getLessonsConnection};
+module.exports = {getLessonsConnection, connectToMongo};
