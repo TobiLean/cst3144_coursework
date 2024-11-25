@@ -4,14 +4,18 @@ const path = require('path');
 const {connectToMongo, getLessonsConnection} = require('./src/db');
 const crypto = require('crypto');
 const fs = require('fs')
+const cors = require('cors')
 //const {MongoClient} = require('mongodb');
+
+const corsOptions = {
+  origin: 'https://cst3144-coursework-frontend.onrender.com'
+}
 
 //Logger middleware
 function logger(req, res, next) {
   console.log(`${req.method} ${req.url}`);
   next();
 }
-
 
 const app = express();
 const PORT = 8090;
@@ -21,6 +25,8 @@ const imageDirectory = path.join(__dirname, 'images');
 app.use(bodyParser.json());
 
 app.use('/', express.static(path.join(__dirname, 'public')));
+
+app.use(cors(corsOptions));
 
 app.use(logger);
 
