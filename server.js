@@ -125,6 +125,7 @@ app.put("/update", async (req, res) => {
   let db = await connectToMongo();
   const result = await db.collection('lessons').updateOne(filter, update)
   console.log(`${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`);
+  res.status(200).json(result)
 })
 
 app.get("/search", async (req, res) => {
