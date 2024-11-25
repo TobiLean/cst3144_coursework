@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const {connectToMongo, getLessonsConnection} = require('./src/db');
 const crypto = require('crypto');
+const fs = require('fs')
 //const {MongoClient} = require('mongodb');
 
 //Logger middleware
@@ -24,6 +25,19 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(logger);
 
 app.use('/images', express.static(imageDirectory));
+
+app.use('/images/:imageTitle', (req, res, next) => {
+  const imageTitle = req.params.imageTitle
+  const imagePath = path.join(imageDirectory, imageTitle)
+
+  fs.access(imagePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      res.status(404).send('Could not find image file!');
+    } else {
+      res.sendFile(imagePath)
+    }
+  })
+})
 
 const getAllLessonsJson = async () => {
   try {
