@@ -8,7 +8,7 @@ const cors = require('cors')
 //const {MongoClient} = require('mongodb');
 
 const corsOptions = {
-  origin: 'https://cst3144-coursework-frontend.onrender.com'
+  origin: 'https://tobilean.github.io/cst3144_coursework_frontend'
 }
 
 //Logger middleware
