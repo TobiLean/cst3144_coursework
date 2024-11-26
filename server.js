@@ -8,7 +8,7 @@ const cors = require('cors')
 //const {MongoClient} = require('mongodb');
 
 const corsOptions = {
-  origin: 'https://tobilean.github.io/'
+  origin: 'https://tobilean.github.io'
 }
 
 //Logger middleware
