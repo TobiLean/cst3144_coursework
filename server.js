@@ -5,8 +5,8 @@ const {connectToMongo, getLessonsConnection} = require('./src/db');
 const crypto = require('crypto');
 const fs = require('fs')
 const cors = require('cors')
-//const {MongoClient} = require('mongodb');
 
+//Cors configuration
 const corsOptions = {
   origin: 'https://tobilean.github.io'
 }
@@ -32,6 +32,7 @@ app.use(logger);
 
 app.use('/images', express.static(imageDirectory));
 
+//Static middleware for serving course images
 app.use('/images/:imageTitle', (req, res, next) => {
   const imageTitle = req.params.imageTitle
   const imagePath = path.join(imageDirectory, imageTitle)
@@ -45,6 +46,7 @@ app.use('/images/:imageTitle', (req, res, next) => {
   })
 })
 
+//Function to get all lessons from mongodb atlas
 const getAllLessonsJson = async () => {
   try {
     let _lessons = await getLessonsConnection();
@@ -55,11 +57,13 @@ const getAllLessonsJson = async () => {
   }
 }
 
+//Lesson route
 app.get("/lessons", async (req, res) => {
   let _lessonsArr = await getAllLessonsJson();
   return res.status(200).json(_lessonsArr);
 })
 
+//Order route
 app.post("/order", async (req, res) => {
   let receivedOrder = req.body;
   console.log("Received order body:", receivedOrder);
@@ -128,6 +132,7 @@ app.put("/update", async (req, res) => {
   res.status(200).json(result)
 })
 
+//Search route
 app.get("/search", async (req, res) => {
 
   let textSearchQuery = [{
