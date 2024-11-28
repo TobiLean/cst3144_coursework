@@ -8,7 +8,7 @@ const cors = require('cors')
 
 //Cors configuration
 const corsOptions = {
-  origin: 'https://cst3144-coursework.onrender.com'
+  origin: 'https://tobilean.github.io'
 }
 
 //Logger middleware
