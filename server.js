@@ -8,7 +8,7 @@ const cors = require('cors')
 
 //Cors configuration
 const corsOptions = {
-  origin: 'https://tobilean.github.io'
+  origin: 'https://cst3144-coursework.onrender.com'
 }
 
 //Logger middleware
@@ -24,7 +24,7 @@ const imageDirectory = path.join(__dirname, 'images');
 
 app.use(bodyParser.json());
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, '..','public')));
 
 app.use(cors(corsOptions));
 
@@ -134,18 +134,6 @@ app.put("/update", async (req, res) => {
 
 //Search route
 app.get("/search", async (req, res) => {
-
-  let textSearchQuery = [{
-    $search: {
-      "index": "lesson_index",
-      "text": {
-        "query": req.query.q,
-        "path": {
-          "wildcard": "*"
-        }
-      }
-    }
-  }]
 
   let searchAsYouTypeQuery = [
     {
